@@ -1,0 +1,137 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+      <div class="container-fluid px-3 px-lg-4 py-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+          <h1 class="h4 mb-0">Overview</h1>
+          <div class="text-muted" id="timestamp"></div>
+        </div>
+        <div class="row g-4">
+          <div class="col-xl-3 col-md-6">
+            <div class="card shadow-sm h-100">
+              <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div>
+                    <div class="text-muted text-uppercase small mb-1">Users</div>
+                    <div class="h4 mb-0">1,284</div>
+                  </div>
+                  <i class="bi bi-people fs-1 text-primary"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-6">
+            <div class="card shadow-sm h-100">
+              <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div>
+                    <div class="text-muted text-uppercase small mb-1">Orders</div>
+                    <div class="h4 mb-0">312</div>
+                  </div>
+                  <i class="bi bi-receipt fs-1 text-success"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-6">
+            <div class="card shadow-sm h-100">
+              <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div>
+                    <div class="text-muted text-uppercase small mb-1">Revenue</div>
+                    <div class="h4 mb-0">$12.8k</div>
+                  </div>
+                  <i class="bi bi-graph-up-arrow fs-1 text-danger"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-6">
+            <div class="card shadow-sm h-100">
+              <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div>
+                    <div class="text-muted text-uppercase small mb-1">Stock</div>
+                    <div class="h4 mb-0">4,351</div>
+                  </div>
+                  <i class="bi bi-box-seam fs-1 text-warning"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row g-4 mt-1">
+          <div class="col-lg-6">
+            <div class="card shadow-sm h-100">
+              <div class="card-header bg-white fw-semibold">User Management</div>
+              <div class="card-body">
+                <div class="row g-3">
+                  <div class="col-6">
+                    <a class="btn btn-outline-primary w-100 py-4" href="#"><i class="bi bi-person fs-2 d-block mb-2"></i>Seller</a>
+                  </div>
+                  <div class="col-6">
+                    <a class="btn btn-outline-primary w-100 py-4" href="#"><i class="bi bi-people fs-2 d-block mb-2"></i>Customer</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card shadow-sm h-100">
+              <div class="card-header bg-white fw-semibold">Product Management</div>
+              <div class="card-body">
+                <div class="row g-3">
+                  <div class="col-6">
+                    <a class="btn btn-outline-primary w-100 py-4" href="#"><i class="bi bi-shop fs-2 d-block mb-2"></i>Products</a>
+                  </div>
+                  <div class="col-6">
+                    <a class="btn btn-outline-primary w-100 py-4" href="#"><i class="bi bi-receipt fs-2 d-block mb-2"></i>Orders</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card shadow-sm h-100">
+              <div class="card-header bg-white fw-semibold">Brand Management</div>
+              <div class="card-body">
+                <div class="row g-3">
+                  <div class="col-6">
+                    <a class="btn btn-outline-primary w-100 py-4" href="#"><i class="bi bi-badge-ad fs-2 d-block mb-2"></i>Brand</a>
+                  </div>
+                  <div class="col-6">
+                    <a class="btn btn-outline-primary w-100 py-4" href="#"><i class="bi bi-badge-ad-fill fs-2 d-block mb-2"></i>Sub Brand</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card shadow-sm h-100">
+              <div class="card-header bg-white fw-semibold">Category Management</div>
+              <div class="card-body">
+                <div class="row g-3">
+                  <div class="col-6">
+                    <a class="btn btn-outline-primary w-100 py-4" href="#"><i class="bi bi-tags fs-2 d-block mb-2"></i>Category</a>
+                  </div>
+                  <div class="col-6">
+                    <a class="btn btn-outline-primary w-100 py-4" href="#"><i class="bi bi-tag fs-2 d-block mb-2"></i>Sub Category</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="pt-5 small text-muted">
+          <hr />
+          <div>© 2025 Your Company</div>
+        </footer>
+      </div>
+    </main>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script>
+    document.getElementById('timestamp').textContent = new Date().toLocaleString();
+  </script>
+</body>
+</html>
+{% endblock %}
