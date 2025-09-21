@@ -1,0 +1,95 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run Django Development Server",
+			"type": "shell",
+			"command": "python manage.py runserver",
+			"args": [],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Run Django Development Server",
+			"type": "shell",
+			"command": "D:/Projects/retail_devops/.venv/Scripts/python.exe manage.py runserver",
+			"args": [],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Run Django Development Server",
+			"type": "shell",
+			"command": "D:/Projects/retail_devops/.venv/Scripts/python.exe manage.py runserver",
+			"args": [],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Run Django Development Server",
+			"type": "shell",
+			"command": "D:/Projects/retail_devops/.venv/Scripts/python.exe manage.py runserver",
+			"args": [],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Make Migrations for Products and Orders",
+			"type": "shell",
+			"command": "D:/Projects/retail_devops/.venv/Scripts/python.exe manage.py makemigrations products orders",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Make Migrations for Products and Orders",
+			"type": "shell",
+			"command": "D:/Projects/retail_devops/.venv/Scripts/python.exe manage.py makemigrations products orders",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Apply Migrations",
+			"type": "shell",
+			"command": "D:/Projects/retail_devops/.venv/Scripts/python.exe manage.py migrate",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Make Migration for Product Image",
+			"type": "shell",
+			"command": "D:/Projects/retail_devops/.venv/Scripts/python.exe manage.py makemigrations products",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Make Migration for Product Image (after Pillow install)",
+			"type": "shell",
+			"command": "D:/Projects/retail_devops/.venv/Scripts/python.exe manage.py makemigrations products",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Apply Migration for Product Image",
+			"type": "shell",
+			"command": "D:/Projects/retail_devops/.venv/Scripts/python.exe manage.py migrate",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}
