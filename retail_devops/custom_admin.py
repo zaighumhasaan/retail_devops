@@ -1,3 +1,9 @@
+from django.template.response import TemplateResponse
+
+class BootstrapAdminMixin:
+    change_form_template = "admin/bootstrap_change_form.html"
+    change_list_template = "admin/bootstrap_change_list.html"
+
 from django.contrib import admin
 from django.template.response import TemplateResponse
 
@@ -17,7 +23,7 @@ class OrderItemInline(admin.TabularInline):
     extra = 0
 
 @admin.register(Category, site=custom_admin_site)
-class CategoryAdmin(admin.ModelAdmin):
+class CategoryAdmin(BootstrapAdminMixin, admin.ModelAdmin):
     list_display = ("name", "description")
     search_fields = ("name",)
 
@@ -25,25 +31,21 @@ class CategoryAdmin(admin.ModelAdmin):
 from django.utils.html import format_html
 
 @admin.register(Product, site=custom_admin_site)
-class ProductAdmin(admin.ModelAdmin):
+class ProductAdmin(BootstrapAdminMixin, admin.ModelAdmin):
     list_display = ("name", "category", "price", "stock", "image_tag", "created_at", "updated_at")
     list_filter = ("category",)
     search_fields = ("name",)
+    readonly_fields = ("image_tag",)
+    fieldsets = (
+        (None, {"fields": ("name", "category", "description", "price", "stock", "image")}),
+        ("Preview", {"fields": ("image_tag",)}),
+    )
 
     def image_tag(self, obj):
         if obj.image:
             return format_html('<img src="{}" style="max-height:40px;max-width:40px;" />', obj.image.url)
         return ""
     image_tag.short_description = "Image"
-
-    formfield_overrides = {
-        # Use Bootstrap classes for form fields
-        models.CharField: {"widget": admin.widgets.AdminTextInputWidget(attrs={"class": "form-control"})},
-        models.TextField: {"widget": admin.widgets.AdminTextareaWidget(attrs={"class": "form-control"})},
-        models.DecimalField: {"widget": admin.widgets.AdminTextInputWidget(attrs={"class": "form-control"})},
-        models.PositiveIntegerField: {"widget": admin.widgets.AdminTextInputWidget(attrs={"class": "form-control"})},
-        models.ImageField: {"widget": admin.widgets.AdminFileWidget(attrs={"class": "form-control"})},
-    }
 
 @admin.register(Order, site=custom_admin_site)
 class OrderAdmin(admin.ModelAdmin):

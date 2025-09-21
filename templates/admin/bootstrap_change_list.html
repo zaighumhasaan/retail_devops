@@ -1,21 +1,65 @@
 {% extends "admin/base_site.html" %}
-{% load admin_list %}
+{% load admin_list admin_urls %}
 {% block content %}
 <div class="container py-4">
   <div class="card shadow-sm">
     <div class="card-header bg-white fw-semibold d-flex justify-content-between align-items-center">
       <span>{{ title }}</span>
-  <a href="{% url 'admin:products_product_add' %}" class="btn btn-primary btn-sm">Add Product</a>
+      <div class="d-flex gap-2">
+        {% if has_add_permission %}
+          <a href="{% url opts|admin_urlname:'add' %}" class="btn btn-primary btn-sm">Add {{ opts.verbose_name|capfirst }}</a>
+        {% endif %}
+        {% if has_delete_permission %}
+          <button type="button" id="delete-selected-btn" class="btn btn-danger btn-sm">Delete selected</button>
+        {% endif %}
+      </div>
     </div>
     <div class="card-body p-0">
       {% if cl.result_count > 0 %}
-        <div class="table-responsive result-list">
-          {% result_list cl %}
-        </div>
+        <form id="changelist-form" method="post" novalidate>
+          {% csrf_token %}
+          {% admin_actions %}
+          <div class="table-responsive result-list">
+            {% result_list cl %}
+          </div>
+        </form>
       {% else %}
-        <div class="p-4 text-center text-muted">No products found. <a href="{% url 'admin:products_product_add' %}" class="btn btn-outline-primary btn-sm ms-2">Add Product</a></div>
+        <div class="p-4 text-center text-muted">No {{ opts.verbose_name_plural }} found.
+          {% if has_add_permission %}
+            <a href="{% url opts|admin_urlname:'add' %}" class="btn btn-outline-primary btn-sm ms-2">Add {{ opts.verbose_name|capfirst }}</a>
+          {% endif %}
+        </div>
       {% endif %}
     </div>
   </div>
 </div>
+{% endblock %}
+{% block extrahead %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const btn = document.getElementById('delete-selected-btn');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        const form = document.getElementById('changelist-form') || document.querySelector('form[action="."]');
+        if (!form) { alert('Cannot find changelist form'); return; }
+        // set action to delete_selected and submit
+        let actionInput = form.querySelector('select[name="action"]');
+        if (actionInput) {
+          actionInput.value = 'delete_selected';
+        } else {
+          // create hidden input if actions are not present
+          const hidden = document.createElement('input');
+          hidden.type = 'hidden'; hidden.name = 'action'; hidden.value = 'delete_selected';
+          form.appendChild(hidden);
+        }
+        // ensure at least one checkbox is checked
+        const checkboxes = form.querySelectorAll('input.action-select');
+        if (![...checkboxes].some(cb => cb.checked)) {
+          alert('No items selected');
+          return;
+        }
+        form.submit();
+      });
+    });
+  </script>
 {% endblock %}
